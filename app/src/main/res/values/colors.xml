@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="accent">#2f3957</color>
+    <color name="checked">#4CAF50</color>
+    <color name="missed">#BA2525</color>
 </resources>

@@ -3,8 +3,10 @@ package ru.menshovanton.hoyosubstrakcer;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,14 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private static ConstraintLayout constraintLayout;
+    public Date[] dateArray;
+    public TextView[] dateViewArray;
+    public int toDay;
+    public int misses;
+    public int claims;
+
+    public final int WISHES_COST = 300;
+    public final int PRIMOGEMS_PER_DAY = 90;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +43,26 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        misses = 0;
+        claims = 0;
+
         String toDayMonth = LocalDate.now().getMonth().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
         toDayMonth.substring(0, 1).toUpperCase();
 
-        int toDay = LocalDate.now().getDayOfMonth();
+        toDay = LocalDate.now().getDayOfMonth();
 
         constraintLayout = findViewById(R.id.main);
 
-        Date[] dateArray = new Date[31];
-        for (int i = 0; i < dateArray.length; i++) {
-            dateArray[i] = new Date(i + 1, 0);
+        if (DataManager.Deserialize(this) == null) {
+            dateArray = new Date[31];
+            for (int i = 0; i < dateArray.length; i++) {
+                dateArray[i] = new Date(i + 1, 0, 0);
+            }
+        } else {
+            dateArray = DataManager.Deserialize(this);
         }
 
-        TextView[] dateViewArray = new TextView[31];
+        dateViewArray = new TextView[31];
         for (int i = 0; i < dateViewArray.length; i++) {
             dateViewArray[i] = new TextView(this);
         }
@@ -80,9 +97,13 @@ public class MainActivity extends AppCompatActivity {
         month = month.substring(0, 1).toUpperCase() + month.substring(1);
         header.setText(month);
 
-        dateBackArray[toDay].setImageResource(R.drawable.background_date_today);
+        dateBackArray[toDay - 1].setImageResource(R.drawable.background_date_today);
+
+        calculate();
 
         setContentView(constraintLayout);
+
+        DataManager.Serialize(this, dateArray);
     }
 
     private void createView(Date date, TextView textView, ImageView imageView, int leftMargin, int rightMargin, int topMargin) {
@@ -103,7 +124,80 @@ public class MainActivity extends AppCompatActivity {
 
         imageView.setImageResource(R.drawable.background_date);
 
+        if (date.status == 1) {
+            textView.setTextColor(getColor(R.color.checked));
+            claims++;
+        }
+
+        if (date.status == 0 && date.id != toDay && date.id < toDay && date.subDaysRemaining != 0) {
+            textView.setTextColor(getColor(R.color.missed));
+            misses++;
+        }
+
         constraintLayout.addView(imageView, layoutParams);
         constraintLayout.addView(textView, layoutParams);
+    }
+
+    public void onAddClick(View view)
+    {
+        dateArray[toDay - 1].subDaysRemaining = dateArray[toDay - 1].subDaysRemaining + 30;
+        updateSubscribes();
+        calculate();
+        Toast.makeText(this, "Луна добавлена!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onCheckClick(View view)
+    {
+        if (dateArray[toDay - 1].status == 1)
+        {
+            Toast.makeText(this, "Вы уже отмечались сегодня", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            dateArray[toDay - 1].status = 1;
+            dateViewArray[toDay - 1].setTextColor(getColor(R.color.checked));
+            DataManager.Serialize(this, dateArray);
+            Toast.makeText(this, "Отметка выполнена!", Toast.LENGTH_SHORT).show();
+            claims++;
+            dateArray[toDay - 1].subDaysRemaining = dateArray[toDay - 1].subDaysRemaining - 1;
+            updateSubscribes();
+            calculate();
+            DataManager.Serialize(this, dateArray);
+        }
+    }
+
+    public void calculate() {
+        TextView claimPrimogems = findViewById(R.id.cliamPrimogems);
+        String cp = String.valueOf(claims * PRIMOGEMS_PER_DAY);
+        claimPrimogems.setText(cp);
+
+        TextView missedPrimogems = findViewById(R.id.missPrimogems);
+        String mp = String.valueOf(misses * PRIMOGEMS_PER_DAY);
+        missedPrimogems.setText(mp);
+
+        TextView claimWishes = findViewById(R.id.claimWishes);
+        String cw = String.valueOf(claims * PRIMOGEMS_PER_DAY / WISHES_COST);
+        claimWishes.setText(cw);
+
+        TextView missedWishes = findViewById(R.id.missWishes);
+        String mw = String.valueOf(misses * PRIMOGEMS_PER_DAY / WISHES_COST);
+        missedWishes.setText(mw);
+
+        int miss = misses * 90;
+
+        TextView laterPrimogems = findViewById(R.id.laterPrimogems);
+        String lp = String.valueOf(dateArray[toDay - 1].subDaysRemaining * PRIMOGEMS_PER_DAY - miss);
+        laterPrimogems.setText(lp);
+
+        TextView laterWishes = findViewById(R.id.laterWishes);
+        String lw = String.valueOf(dateArray[toDay - 1].subDaysRemaining * PRIMOGEMS_PER_DAY - miss / WISHES_COST);
+        laterWishes.setText(lw);
+    }
+
+    public void updateSubscribes() {
+        for (int i = 0; i < dateArray[toDay - 1].subDaysRemaining - toDay; i++) {
+            dateArray[toDay + i].subDaysRemaining = dateArray[toDay - 1].subDaysRemaining;
+        }
+        DataManager.Serialize(this, dateArray);
     }
 }

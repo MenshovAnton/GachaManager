@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">HoyoSubsTrakcer</string>
     <string name="filler">[filler]</string>
+    <string name="num_filler">0</string>
+    <string name="check">Отметка</string>
+    <string name="add">Добавить луну</string>
+    <string name="copyright">(c) MenshovAnton</string>
+    <string name="stat_title">Статистика</string>
+    <string name="claim">Получено</string>
+    <string name="miss">Пропущено</string>
+    <string name="later">Получишь</string>
 </resources>

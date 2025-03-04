@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HoyoSubsTrakcer</string>
+    <string name="filler">[filler]</string>
 </resources>

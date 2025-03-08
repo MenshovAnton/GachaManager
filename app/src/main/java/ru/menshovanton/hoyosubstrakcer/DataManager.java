@@ -10,39 +10,35 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class DataManager {
-    private static final String FILE_NAME = "data.json";
+    private static final String FILE_NAME_1 = "dateData.json";
+    private static Gson gson = new Gson();
 
     static void Serialize(Context context, Date[] dataArray) {
 
-        Gson gson = new Gson();
         DataItems dataItems = new DataItems();
         dataItems.setDates(dataArray);
         String jsonString = gson.toJson(dataItems);
 
         try (FileOutputStream fileOutputStream =
-                     context.openFileOutput(FILE_NAME, Context.MODE_PRIVATE))
+                     context.openFileOutput(FILE_NAME_1, Context.MODE_PRIVATE))
         {
             fileOutputStream.write(jsonString.getBytes());
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     static Date[] Deserialize(Context context) {
-
-        try (FileInputStream fileInputStream = context.openFileInput(FILE_NAME);
-            InputStreamReader streamReader = new InputStreamReader(fileInputStream))
+        try (FileInputStream fileInputStream = context.openFileInput(FILE_NAME_1);
+             InputStreamReader streamReader = new InputStreamReader(fileInputStream))
         {
-            Gson gson = new Gson();
             DataItems dataItems = gson.fromJson(streamReader, DataItems.class);
             return  dataItems.getDates();
         }
         catch (IOException ex){
             ex.printStackTrace();
         }
-
         return null;
     }
 

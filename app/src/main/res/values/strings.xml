@@ -9,4 +9,6 @@
     <string name="claim">Получено</string>
     <string name="miss">Пропущено</string>
     <string name="later">Получишь</string>
+    <string name="next">&gt;</string>
+    <string name="previous">&lt;</string>
 </resources>

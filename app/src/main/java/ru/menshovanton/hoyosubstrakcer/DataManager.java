@@ -11,7 +11,7 @@ import java.io.InputStreamReader;
 
 public class DataManager {
     private static final String FILE_NAME_1 = "dateData.json";
-    private static Gson gson = new Gson();
+    private static final Gson gson = new Gson();
 
     static void Serialize(Context context, Date[] dataArray) {
 

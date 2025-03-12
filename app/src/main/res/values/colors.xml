@@ -5,4 +5,6 @@
     <color name="accent">#2f3957</color>
     <color name="checked">#4CAF50</color>
     <color name="missed">#BA2525</color>
+    <color name="grey">#575A6B</color>
+    <color name="light_grey">#f3edf7</color>
 </resources>

@@ -1,0 +1,30 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="512dp"
+    android:viewportWidth="512"
+    android:viewportHeight="512">
+    <path
+        android:fillColor="#fff"
+        android:name="Прямоугольник 1"
+        android:pathData="m65.5 108h381c11.3 0 20.5 9.2 20.5 20.5c0 11.3 -9.2 20.5 -20.5 20.5h-381c-11.3 0 -20.5 -9.2 -20.5 -20.5c0 -11.3 9.2 -20.5 20.5 -20.5z" />
+    <path
+        android:fillColor="#fff"
+        android:name="Прямоугольник 1"
+        android:pathData="m65.5 236h381c11.3 0 20.5 9.2 20.5 20.5c0 11.3 -9.2 20.5 -20.5 20.5h-381c-11.3 0 -20.5 -9.2 -20.5 -20.5c0 -11.3 9.2 -20.5 20.5 -20.5z" />
+    <path
+        android:fillColor="#fff"
+        android:name="Прямоугольник 1"
+        android:pathData="m65.5 360h381c11.3 0 20.5 9.2 20.5 20.5c0 11.3 -9.2 20.5 -20.5 20.5h-381c-11.3 0 -20.5 -9.2 -20.5 -20.5c0 -11.3 9.2 -20.5 20.5 -20.5z" />
+    <path
+        android:fillColor="#fff"
+        android:name="Эллипс 1"
+        android:pathData="m367.2 73.3c30.5 0 55.3 24.7 55.3 55.3c0 30.5 -24.7 55.3 -55.3 55.3c-30.5 0 -55.3 -24.7 -55.3 -55.3c0 -30.5 24.7 -55.3 55.3 -55.3z" />
+    <path
+        android:fillColor="#fff"
+        android:name="Эллипс 1"
+        android:pathData="m156.2 201.3c30.5 0 55.3 24.7 55.3 55.3c0 30.5 -24.7 55.3 -55.3 55.3c-30.5 0 -55.3 -24.7 -55.3 -55.3c0 -30.5 24.7 -55.3 55.3 -55.3z" />
+    <path
+        android:fillColor="#fff"
+        android:name="Эллипс 1"
+        android:pathData="m311.2 328.3c30.5 0 55.3 24.7 55.3 55.3c0 30.5 -24.7 55.3 -55.3 55.3c-30.5 0 -55.3 -24.7 -55.3 -55.3c0 -30.5 24.7 -55.3 55.3 -55.3z" />
+</vector>

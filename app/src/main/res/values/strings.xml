@@ -11,4 +11,21 @@
     <string name="later">Получишь</string>
     <string name="next">&gt;</string>
     <string name="previous">&lt;</string>
+    <string name="subsCount">Кол-во лун:</string>
+    <string name="nav_home">Домашняя</string>
+    <string name="nav_settings">Настройки</string>
+    <string name="nav_info">О приложении</string>
+    
+    <string name="add_sub">Подписка добавлена</string>
+    <string name="subs_limit">Достигнут лимит подписок</string>
+    <string name="check_today">Отметка выполнена!</string>
+    <string name="already_cheked">Вы уже отмечались сегодня</string>
+    <string name="active_subs_null">У вас нет активных подписок</string>
+
+    <string name="description">Отслеживайте награды Благословления полной Луны, Пропуска снабжения экспересса и Интертон-подписки.
+    Ежедневные напоминания, счетчик наград, наглядный календарь.</string>
+    <string name="copyright_info">Все права принадлежат их правооблодателям (All rights belong to their copyright holders). Приложение не
+    аффелировано компанией Hoyoverse</string>
+    <string name="dev_info">Разработчик MenshovAnton (Меньшов. А. Р.) По любым вопросам обращаться на почту antrome@yandex.ru</string>
+    <string name="feedback_info">Нашли баг? Оставте репорт на официальном репозитории проекта или напишите на почу (см. выше)</string>
 </resources>

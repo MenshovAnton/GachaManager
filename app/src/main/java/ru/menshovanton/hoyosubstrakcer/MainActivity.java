@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public static Context context;
     @SuppressLint("StaticFieldLeak")
     public static MainActivity mainActivity;
+    public static int subType;
 
     private final NavigationBarView.OnItemSelectedListener onItemSelectedListener
             = new NavigationBarView.OnItemSelectedListener() {

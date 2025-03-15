@@ -1,31 +1,44 @@
 <resources>
     <string name="app_name">HoyoSubsTrakcer</string>
-    <string name="filler">[filler]</string>
-    <string name="num_filler">0</string>
-    <string name="check">Отметка</string>
-    <string name="add">Добавить луну</string>
-    <string name="copyright">(c) MenshovAnton</string>
-    <string name="stat_title">Статистика</string>
-    <string name="claim">Получено</string>
-    <string name="miss">Пропущено</string>
-    <string name="later">Получишь</string>
-    <string name="next">&gt;</string>
-    <string name="previous">&lt;</string>
-    <string name="subsCount">Кол-во лун:</string>
-    <string name="nav_home">Домашняя</string>
-    <string name="nav_settings">Настройки</string>
-    <string name="nav_info">О приложении</string>
-    
-    <string name="add_sub">Подписка добавлена</string>
-    <string name="subs_limit">Достигнут лимит подписок</string>
-    <string name="check_today">Отметка выполнена!</string>
-    <string name="already_cheked">Вы уже отмечались сегодня</string>
-    <string name="active_subs_null">У вас нет активных подписок</string>
-
     <string name="description">Отслеживайте награды Благословления полной Луны, Пропуска снабжения экспересса и Интертон-подписки.
     Ежедневные напоминания, счетчик наград, наглядный календарь.</string>
     <string name="copyright_info">Все права принадлежат их правооблодателям (All rights belong to their copyright holders). Приложение не
     аффелировано компанией Hoyoverse</string>
     <string name="dev_info">Разработчик MenshovAnton (Меньшов. А. Р.) По любым вопросам обращаться на почту antrome@yandex.ru</string>
     <string name="feedback_info">Нашли баг? Оставте репорт на официальном репозитории проекта или напишите на почу (см. выше)</string>
+
+    <string name="filler">[filler]</string>
+    <string name="num_filler">0</string>
+
+    <string name="check_button_text">Отметка</string>
+    <string name="add_button_text">Добавить</string>
+    <string name="next_month_button_text">&gt;</string>
+    <string name="previous_button_text">&lt;</string>
+
+    <string name="stat_header">Статистика</string>
+    <string name="claim_column_header">Получено</string>
+    <string name="miss_column_header">Пропущено</string>
+    <string name="later_column_header">Получишь</string>
+    <string name="blessing_of_the_welkin_moon_count_header">Кол-во лун:</string>
+    <string name="star_rail_special_pass_count_header">Кол-во пропусков экспресса:</string>
+    <string name="inter_knot_member_count_header">Кол-во интертон-подписок:</string>
+    <string name="sub_type_selector_header">Тип отображаемой подписки: </string>
+
+    <string name="nav_home">Домашняя</string>
+    <string name="nav_settings">Настройки</string>
+    <string name="nav_info">О приложении</string>
+
+    <string name="blessing_of_the_welkin_moon">Луна</string>
+    <string name="star_rail_special_pass">Пропуск</string>
+    <string name="inter_knot_member">Интернот</string>
+
+    <string name="blessing_of_the_welkin_moon_checked">✅ Луна</string>
+    <string name="star_rail_special_pass_checked">✅ Пропуск</string>
+    <string name="inter_knot_member_checked">✅ Интернот</string>
+    
+    <string name="add_sub">Подписка добавлена</string>
+    <string name="subs_limit">Достигнут лимит подписок</string>
+    <string name="check_today">Отметка выполнена!</string>
+    <string name="already_cheked">Вы уже отмечались сегодня</string>
+    <string name="active_subs_null">У вас нет активных подписок</string>
 </resources>

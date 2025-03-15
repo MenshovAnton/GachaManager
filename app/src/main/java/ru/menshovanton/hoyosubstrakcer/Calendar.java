@@ -46,6 +46,10 @@ public class Calendar {
         }
     }
 
+    public void updateCalendar() {
+        dateArray = DataManager.Deserialize(context);
+    }
+
     public void drawCalendar() {
         int margin = 1200;
         int topMargin = 250;
@@ -55,11 +59,11 @@ public class Calendar {
 
         for (int i = 0; i < 365; i++) {
             if (dateArray[i].status == 0 && dateArray[i].subDaysRemaining > 0 && dateArray[i].id < HomeFragment.toDayOfYear - 1) {
-                HomeFragment.misses++;
+                HomeFragment.missesDays++;
             }
 
             if (dateArray[i].status == 1 && dateArray[i].subDaysRemaining > 0 && dateArray[i].id < HomeFragment.toDayOfYear - 1) {
-                HomeFragment.claims++;
+                HomeFragment.claimsDays++;
             }
 
             if (i >= daysOfYearForMonth && i < daysOfYearForMonth + getDaysOfMonth(HomeFragment.selectedMonth)) {
@@ -79,12 +83,12 @@ public class Calendar {
             }
         }
 
-        if (HomeFragment.misses > 0) {
-            HomeFragment.misses++;
+        if (HomeFragment.missesDays > 0) {
+            HomeFragment.missesDays++;
         }
 
         if (dateArray[HomeFragment.toDayOfYear - 1].status == 1) {
-            HomeFragment.claims++;
+            HomeFragment.claimsDays++;
         }
     }
 

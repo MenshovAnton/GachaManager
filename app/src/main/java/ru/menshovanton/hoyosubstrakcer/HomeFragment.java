@@ -27,18 +27,18 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
-    TextView subsCounter;
+    TextView subsCounterView;
     static ConstraintLayout constraintLayout;
     Button checkButton;
     Button addButton;
-    Button previousMonthButton;
-    Button nextMonthButton;
+    ImageView previousMonthButton;
+    ImageView nextMonthButton;
 
     public Calendar calendar;
-    public int toDay;
+    public int toDayOfMonth;
     public static int toDayOfYear;
-    public static int misses;
-    public static int claims;
+    public static int missesDays;
+    public static int claimsDays;
     public static int selectedMonth;
     public static int subsCount;
 
@@ -56,21 +56,22 @@ public class HomeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        misses = 0;
-        claims = 0;
+        missesDays = 0;
+        claimsDays = 0;
         subsCount = 0;
 
         String toDayMonth = LocalDate.now().getMonth().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("ru"));
         toDayMonth.substring(0, 1).toUpperCase();
 
         selectedMonth = LocalDate.now().getMonth().getValue();
-        toDay = LocalDate.now().getDayOfMonth();
+        toDayOfMonth = LocalDate.now().getDayOfMonth();
         toDayOfYear = LocalDate.now().getDayOfYear();
 
 
         calendar = new Calendar(MainActivity.context, MainActivity.mainActivity);
 
-        if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining <= 30) { subsCount = 1; }
+        if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining == 0) { subsCount = 0; }
+        else if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining <= 30) { subsCount = 1; }
         else if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining <= 60) { subsCount = 2;}
         else if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining <= 90) { subsCount = 3; }
         else if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining <= 120) { subsCount = 4; }
@@ -84,12 +85,12 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        subsCounter = view.findViewById(R.id.subsCount);
+        subsCounterView = view.findViewById(R.id.subsCount);
         constraintLayout = view.findViewById(R.id.constraint);
-        checkButton = view.findViewById(R.id.check);
-        addButton = view.findViewById(R.id.add);
-        previousMonthButton = view.findViewById(R.id.previous);
-        nextMonthButton = view.findViewById(R.id.next);
+        checkButton = view.findViewById(R.id.checkDayButton);
+        addButton = view.findViewById(R.id.addSubButton);
+        previousMonthButton = view.findViewById(R.id.previousMonth);
+        nextMonthButton = view.findViewById(R.id.nextMonth);
         return view;
     }
 
@@ -97,6 +98,9 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        subsCounterView.setText(String.valueOf(subsCount));
+
+        calendar.updateCalendar();
         calendar.drawCalendar();
         setMonthHeader(selectedMonth);
         calculateStats();
@@ -105,58 +109,27 @@ public class HomeFragment extends Fragment {
         addButton.setOnClickListener(this::onAddClick);
         previousMonthButton.setOnClickListener(this::onPreviousMonthClick);
         nextMonthButton.setOnClickListener(this::onNextMonthClick);
-    }
 
-    public void calculateStats() {
-        int missedPrimogemsCount = misses * PRIMOGEMS_PER_DAY;
-        int claimPrimogemsCount = claims * PRIMOGEMS_PER_DAY;
-        int laterPrimogemsCount = SUMMARY_CLAIM * subsCount - claimPrimogemsCount - missedPrimogemsCount;
-        int laterWishesCount = laterPrimogemsCount / WISHES_COST;
-
-        String laterPrimogemsText = "0";
-        String laterWishesText = "0";
-        String claimPrimogemsText = String.valueOf(claimPrimogemsCount);
-        String missedPrimogemsText = String.valueOf(missedPrimogemsCount);
-        String claimWishesText = String.valueOf(claimPrimogemsCount / WISHES_COST);
-        String missedWishesText = String.valueOf(missedPrimogemsCount / WISHES_COST);
-
-        TextView claimPrimogems = getView().findViewById(R.id.cliamPrimogems);
-        claimPrimogems.setText(claimPrimogemsText);
-
-        TextView missedPrimogems = getView().findViewById(R.id.missPrimogems);
-        missedPrimogems.setText(missedPrimogemsText);
-
-        TextView claimWishes = getView().findViewById(R.id.claimWishes);
-        claimWishes.setText(claimWishesText);
-
-        TextView missedWishes = getView().findViewById(R.id.missWishes);
-        missedWishes.setText(missedWishesText);
-
-        TextView laterPrimogems = getView().findViewById(R.id.laterPrimogems);
-        if (laterPrimogemsCount > 0 && claims > 0)
-        {   laterPrimogemsText = String.valueOf(laterPrimogemsCount);   }
-        laterPrimogems.setText(laterPrimogemsText);
-
-        TextView laterWishes = getView().findViewById(R.id.laterWishes);
-        if (laterPrimogemsCount > 0 && claims > 0)
-        {   laterWishesText = String.valueOf(laterWishesCount); }
-        laterWishes.setText(laterWishesText);
-    }
-
-    public void updateSubscribes() {
-        for (int i = 0; i < calendar.dateArray[toDayOfYear - 1].subDaysRemaining; i++) {
-            calendar.dateArray[toDayOfYear + i].subDaysRemaining = calendar.dateArray[toDayOfYear + i - 1].subDaysRemaining - 1;
+        ImageView gemIcon = view.findViewById(R.id.gemIcon);
+        TextView subsCountTitle = view.findViewById(R.id.subsCountHeader);
+        ImageView wishIcon = view.findViewById(R.id.wishIcon);
+        switch (MainActivity.subType) {
+            case 0:
+                gemIcon.setImageResource(R.drawable.primogem);
+                wishIcon.setImageResource(R.drawable.intertwined_fate);
+                subsCountTitle.setText(R.string.blessing_of_the_welkin_moon_count_header);
+                break;
+            case 1:
+                gemIcon.setImageResource(R.drawable.stellar_jade);
+                wishIcon.setImageResource(R.drawable.star_rail_special_pass);
+                subsCountTitle.setText(R.string.star_rail_special_pass_count_header);
+                break;
+            case 2:
+                gemIcon.setImageResource(R.drawable.polychrome);
+                wishIcon.setImageResource(R.drawable.encrypted_master_tape);
+                subsCountTitle.setText(R.string.inter_knot_member_count_header);
+                break;
         }
-        DataManager.Serialize(MainActivity.context, calendar.dateArray);
-    }
-
-    @SuppressLint("SetTextI18n")
-    public void setMonthHeader(int month) {
-        TextView header = getView().findViewById(R.id.header);
-        Month monthObj = Month.of(month);
-        Locale locale = Locale.forLanguageTag("ru");
-        String print = monthObj.getDisplayName(TextStyle.FULL_STANDALONE, locale);
-        header.setText(print.substring(0, 1).toUpperCase() + print.substring(1));
     }
 
     public static void createView(Date date, TextView textView, ImageView imageView, int leftMargin, int rightMargin, int topMargin) {
@@ -193,6 +166,58 @@ public class HomeFragment extends Fragment {
         constraintLayout.addView(textView, layoutParams);
     }
 
+    public void calculateStats() {
+        int missedPrimogemsCount = missesDays * PRIMOGEMS_PER_DAY;
+        int claimPrimogemsCount = claimsDays * PRIMOGEMS_PER_DAY;
+        int laterPrimogemsCount = SUMMARY_CLAIM * subsCount - claimPrimogemsCount - missedPrimogemsCount;
+        int laterWishesCount = laterPrimogemsCount / WISHES_COST;
+
+        String laterPrimogemsText = "0";
+        String laterWishesText = "0";
+        String claimPrimogemsText = String.valueOf(claimPrimogemsCount);
+        String missedPrimogemsText = String.valueOf(missedPrimogemsCount);
+        String claimWishesText = String.valueOf(claimPrimogemsCount / WISHES_COST);
+        String missedWishesText = String.valueOf(missedPrimogemsCount / WISHES_COST);
+
+        TextView claimPrimogems = getView().findViewById(R.id.cliamsGemsCounter);
+        claimPrimogems.setText(claimPrimogemsText);
+
+        TextView missedPrimogems = getView().findViewById(R.id.missGemsCounter);
+        missedPrimogems.setText(missedPrimogemsText);
+
+        TextView claimWishes = getView().findViewById(R.id.claimWishesCounter);
+        claimWishes.setText(claimWishesText);
+
+        TextView missedWishes = getView().findViewById(R.id.missWishesCounter);
+        missedWishes.setText(missedWishesText);
+
+        TextView laterPrimogems = getView().findViewById(R.id.laterGemsCounter);
+        if (laterPrimogemsCount > 0 && claimsDays > 0)
+        {   laterPrimogemsText = String.valueOf(laterPrimogemsCount);   }
+        laterPrimogems.setText(laterPrimogemsText);
+
+        TextView laterWishes = getView().findViewById(R.id.laterWishesCounter);
+        if (laterPrimogemsCount > 0 && claimsDays > 0)
+        {   laterWishesText = String.valueOf(laterWishesCount); }
+        laterWishes.setText(laterWishesText);
+    }
+
+    public void updateSubscribes() {
+        for (int i = 0; i < calendar.dateArray[toDayOfYear - 1].subDaysRemaining; i++) {
+            calendar.dateArray[toDayOfYear + i].subDaysRemaining = calendar.dateArray[toDayOfYear + i - 1].subDaysRemaining - 1;
+        }
+        DataManager.Serialize(MainActivity.context, calendar.dateArray);
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void setMonthHeader(int month) {
+        TextView header = getView().findViewById(R.id.monthHeader);
+        Month monthObj = Month.of(month);
+        Locale locale = Locale.forLanguageTag("ru");
+        String print = monthObj.getDisplayName(TextStyle.FULL_STANDALONE, locale);
+        header.setText(print.substring(0, 1).toUpperCase() + print.substring(1));
+    }
+
     public void onAddClick(View view)
     {
         if (subsCount <= 6) {
@@ -208,8 +233,8 @@ public class HomeFragment extends Fragment {
                     }
                 }
 
-                misses = 0;
-                claims = 0;
+                missesDays = 0;
+                claimsDays = 0;
 
                 calendar.dateArray[toDayOfYear - 1].subDaysRemaining = 30;
             }
@@ -220,13 +245,12 @@ public class HomeFragment extends Fragment {
             }
 
             updateSubscribes();
-            calculateStats();
             Toast.makeText(MainActivity.mainActivity, getString(R.string.add_sub), Toast.LENGTH_SHORT).show();
             onCheckClick(view);
         }
         else
         {   Toast.makeText(MainActivity.mainActivity, getString(R.string.subs_limit), Toast.LENGTH_SHORT).show(); }
-
+        subsCounterView.setText(String.valueOf(subsCount));
     }
 
     public void onCheckClick(View view)
@@ -239,7 +263,7 @@ public class HomeFragment extends Fragment {
         {
             calendar.dateArray[toDayOfYear - 1].status = 1;
             Toast.makeText(MainActivity.mainActivity, getString(R.string.check_today), Toast.LENGTH_SHORT).show();
-            claims++;
+            claimsDays++;
             calculateStats();
             selectedMonth = LocalDate.now().getMonth().getValue();
             calendar.removeCalendar(constraintLayout);

@@ -52,7 +52,7 @@ public class Calendar {
 
     public void drawCalendar() {
         int margin = 1200;
-        int topMargin = 250;
+        int topMargin = 400;
         int j = 0;
 
         int daysOfYearForMonth = getDaysOfYearForMonth(HomeFragment.selectedMonth);

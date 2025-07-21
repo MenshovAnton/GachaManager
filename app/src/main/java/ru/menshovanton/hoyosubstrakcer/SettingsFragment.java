@@ -18,9 +18,6 @@ import android.widget.TextView;
 
 public class SettingsFragment extends Fragment {
 
-    TextView blessingOfTheWelkinMoonSelectButton;
-    TextView starRailSpecialPassSelectButton;
-    TextView interKnotMembershipSelectButton;
     TextView hourTextView;
     TextView minuteTextView;
 
@@ -45,9 +42,6 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        blessingOfTheWelkinMoonSelectButton = view.findViewById(R.id.blessingOfTheWelkinMoonSelectButton);
-        starRailSpecialPassSelectButton = view.findViewById(R.id.starRailSpecialPassSelectButton);
-        interKnotMembershipSelectButton = view.findViewById(R.id.interKnotSelectButton);
         notificationsSwitch = view.findViewById(R.id.notificationsSwitch);
         hourTextView = view.findViewById(R.id.hourTextView);
         minuteTextView = view.findViewById(R.id.minutesTextView);
@@ -60,21 +54,6 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        blessingOfTheWelkinMoonSelectButton.setOnClickListener(this::onMoonClick);
-        starRailSpecialPassSelectButton.setOnClickListener(this::onPassClick);
-        interKnotMembershipSelectButton.setOnClickListener(this::onInterknotClick);
-
-        switch (MainActivity.subType) {
-            case 0:
-                check(blessingOfTheWelkinMoonSelectButton, getString(R.string.blessing_of_the_welkin_moon_checked));
-                break;
-            case 1:
-                check(starRailSpecialPassSelectButton, getString(R.string.star_rail_special_pass_checked));
-                break;
-            case 2:
-                check(interKnotMembershipSelectButton, getString(R.string.inter_knot_member_checked));
-        }
-
         notificationsSwitch.setOnCheckedChangeListener(this::onCheckedChange);
         notificationsSwitch.setChecked(Notification.allowNotifications);
 
@@ -85,28 +64,6 @@ public class SettingsFragment extends Fragment {
 
     private void onCheckedChange(CompoundButton compoundButton, boolean b) {
         Notification.allowNotifications = b;
-    }
-
-    public void onMoonClick(View view) {
-        MainActivity.subType = 0;
-        check(blessingOfTheWelkinMoonSelectButton, getString(R.string.blessing_of_the_welkin_moon_checked));
-    }
-
-    public void onPassClick(View view) {
-        MainActivity.subType = 1;
-        check(starRailSpecialPassSelectButton, getString(R.string.star_rail_special_pass_checked));
-    }
-
-    public void onInterknotClick(View view) {
-        MainActivity.subType = 2;
-        check(interKnotMembershipSelectButton, getString(R.string.inter_knot_member_checked));
-    }
-
-    private void check(TextView view, String str) {
-        blessingOfTheWelkinMoonSelectButton.setText(getString(R.string.blessing_of_the_welkin_moon));
-        starRailSpecialPassSelectButton.setText(getString(R.string.star_rail_special_pass));
-        interKnotMembershipSelectButton.setText(getString(R.string.inter_knot_member));
-        view.setText(str);
     }
 
     public void showTimePicker(View view) {

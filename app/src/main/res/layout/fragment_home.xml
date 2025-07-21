@@ -32,6 +32,7 @@
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="100dp"
             android:backgroundTint="@color/accent"
             android:text="@string/check_button_text"
             android:textColor="@color/white"
@@ -46,6 +47,7 @@
             android:id="@+id/addSubButton"
             android:layout_width="150dp"
             android:layout_height="60dp"
+            android:layout_marginTop="100dp"
             android:backgroundTint="@color/accent"
             android:backgroundTintMode="screen"
             android:text="@string/add_button_text"
@@ -265,6 +267,58 @@
             app:layout_constraintStart_toEndOf="@+id/subsCountHeader"
             app:layout_constraintTop_toBottomOf="@+id/wishIcon"
             app:layout_constraintVertical_bias="0.097" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/blessingOfTheWelkinMoonSelectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/accent"
+            android:text="@string/blessing_of_the_welkin_moon"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/addSubButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/monthHeader"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeWidth="5dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/starRailSpecialPassSelectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/accent"
+            android:text="@string/star_rail_special_pass"
+            app:layout_constraintBottom_toTopOf="@+id/addSubButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/blessingOfTheWelkinMoonSelectButton"
+            app:layout_constraintTop_toBottomOf="@+id/monthHeader"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeWidth="5dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/interKnotMembershipSelectButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/accent"
+            android:backgroundTintMode="screen"
+            android:text="@string/inter_knot_member"
+            app:layout_constraintBottom_toTopOf="@+id/addSubButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/starRailSpecialPassSelectButton"
+            app:layout_constraintTop_toBottomOf="@+id/monthHeader"
+            app:layout_constraintVertical_bias="0.0"
+            app:strokeWidth="5dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

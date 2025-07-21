@@ -78,4 +78,10 @@ public class MainActivity extends AppCompatActivity {
 
         startService(new Intent(this, AlarmHelper.class));
     }
+
+    public void updateLayout(Fragment fragment) {
+        loadFragment(fragment);
+    }
+
+
 }

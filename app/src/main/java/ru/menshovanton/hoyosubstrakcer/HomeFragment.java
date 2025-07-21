@@ -1,8 +1,11 @@
 package ru.menshovanton.hoyosubstrakcer;
 
 import static androidx.core.content.ContextCompat.getColor;
+import static androidx.core.content.ContextCompat.getColorStateList;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -21,20 +24,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
+
+    MainActivity mainActivity;
     TextView subsCounterView;
     static ConstraintLayout constraintLayout;
-    Button checkButton;
-    Button addButton;
+
     ImageView previousMonthButton;
     ImageView nextMonthButton;
 
+    Button checkButton;
+    Button addButton;
+
+    MaterialButton blessingOfTheWelkinMoonSelectButton;
+    MaterialButton starRailSpecialPassSelectButton;
+    MaterialButton interKnotMembershipSelectButton;
+
     public Calendar calendar;
+
     public int toDayOfMonth;
     public static int toDayOfYear;
     public static int missesDays;
@@ -55,6 +69,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mainActivity = MainActivity.mainActivity;
 
         missesDays = 0;
         claimsDays = 0;
@@ -81,6 +97,7 @@ public class HomeFragment extends Fragment {
         Notification.subsCount = subsCount;
 
         DataManager.Serialize(MainActivity.context, calendar.dateArray);
+
     }
 
     @Override
@@ -93,6 +110,9 @@ public class HomeFragment extends Fragment {
         addButton = view.findViewById(R.id.addSubButton);
         previousMonthButton = view.findViewById(R.id.previousMonth);
         nextMonthButton = view.findViewById(R.id.nextMonth);
+        blessingOfTheWelkinMoonSelectButton = view.findViewById(R.id.blessingOfTheWelkinMoonSelectButton);
+        starRailSpecialPassSelectButton = view.findViewById(R.id.starRailSpecialPassSelectButton);
+        interKnotMembershipSelectButton = view.findViewById(R.id.interKnotMembershipSelectButton);
 
         return view;
     }
@@ -113,6 +133,9 @@ public class HomeFragment extends Fragment {
         addButton.setOnClickListener(this::onAddClick);
         previousMonthButton.setOnClickListener(this::onPreviousMonthClick);
         nextMonthButton.setOnClickListener(this::onNextMonthClick);
+        blessingOfTheWelkinMoonSelectButton.setOnClickListener(this::onMoonClick);
+        starRailSpecialPassSelectButton.setOnClickListener(this::onPassClick);
+        interKnotMembershipSelectButton.setOnClickListener(this::onInterknotClick);
 
         ImageView gemIcon = view.findViewById(R.id.gemIcon);
         TextView subsCountTitle = view.findViewById(R.id.subsCountHeader);
@@ -123,16 +146,19 @@ public class HomeFragment extends Fragment {
                 gemIcon.setImageResource(R.drawable.primogem);
                 wishIcon.setImageResource(R.drawable.intertwined_fate);
                 subsCountTitle.setText(R.string.blessing_of_the_welkin_moon_count_header);
+                changeCheckedTab(blessingOfTheWelkinMoonSelectButton);
                 break;
             case 1:
                 gemIcon.setImageResource(R.drawable.stellar_jade);
                 wishIcon.setImageResource(R.drawable.star_rail_special_pass);
                 subsCountTitle.setText(R.string.star_rail_special_pass_count_header);
+                changeCheckedTab(starRailSpecialPassSelectButton);
                 break;
             case 2:
                 gemIcon.setImageResource(R.drawable.polychrome);
                 wishIcon.setImageResource(R.drawable.encrypted_master_tape);
                 subsCountTitle.setText(R.string.inter_knot_member_count_header);
+                changeCheckedTab(interKnotMembershipSelectButton);
                 break;
         }
     }
@@ -303,5 +329,31 @@ public class HomeFragment extends Fragment {
 
     public Calendar getCalendar() {
         return calendar;
+    }
+
+    public void onMoonClick(View view) {
+        MainActivity.subType = 0;
+        changeCheckedTab(blessingOfTheWelkinMoonSelectButton);
+        mainActivity.updateLayout(HomeFragment.newInstance());
+    }
+
+    public void onPassClick(View view) {
+        MainActivity.subType = 1;
+        changeCheckedTab(starRailSpecialPassSelectButton);
+        mainActivity.updateLayout(HomeFragment.newInstance());
+    }
+
+    public void onInterknotClick(View view) {
+        MainActivity.subType = 2;
+        changeCheckedTab(interKnotMembershipSelectButton);
+        mainActivity.updateLayout(HomeFragment.newInstance());
+    }
+
+    private void changeCheckedTab(MaterialButton view) {
+        blessingOfTheWelkinMoonSelectButton.setStrokeColorResource(R.color.accent);
+        starRailSpecialPassSelectButton.setStrokeColorResource(R.color.accent);
+        interKnotMembershipSelectButton.setStrokeColorResource(R.color.accent);
+
+        view.setStrokeColorResource(R.color.check);
     }
 }

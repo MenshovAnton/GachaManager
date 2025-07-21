@@ -25,68 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/subTypeSelectHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/sub_type_selector_header"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/blessingOfTheWelkinMoonSelectButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/blessing_of_the_welkin_moon"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/subTypeSelectHeader"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/starRailSpecialPassSelectButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:rotationX="0"
-            android:text="@string/star_rail_special_pass"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/blessingOfTheWelkinMoonSelectButton"
-            app:layout_constraintTop_toBottomOf="@+id/subTypeSelectHeader"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/interKnotSelectButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/inter_knot_member"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/starRailSpecialPassSelectButton"
-            app:layout_constraintTop_toBottomOf="@+id/subTypeSelectHeader"
-            app:layout_constraintVertical_bias="0.0" />
-
         <Switch
             android:id="@+id/notificationsSwitch"
             android:layout_width="wrap_content"
@@ -103,7 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/starRailSpecialPassSelectButton"
+            app:layout_constraintTop_toBottomOf="@+id/header"
             app:layout_constraintVertical_bias="0.0"
             tools:ignore="UseSwitchCompatOrMaterialXml" />
 

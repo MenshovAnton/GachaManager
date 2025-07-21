@@ -41,8 +41,6 @@ public class DataManager {
                 {   e.printStackTrace();    }
                 break;
         }
-
-
     }
 
     static Date[] Deserialize(Context context) {

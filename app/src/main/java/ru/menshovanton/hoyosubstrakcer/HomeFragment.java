@@ -78,19 +78,22 @@ public class HomeFragment extends Fragment {
         else if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining <= 150) { subsCount = 5; }
         else if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining <= 180) { subsCount = 6; }
 
+        Notification.subsCount = subsCount;
+
         DataManager.Serialize(MainActivity.context, calendar.dateArray);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         subsCounterView = view.findViewById(R.id.subsCount);
         constraintLayout = view.findViewById(R.id.constraint);
         checkButton = view.findViewById(R.id.checkDayButton);
         addButton = view.findViewById(R.id.addSubButton);
         previousMonthButton = view.findViewById(R.id.previousMonth);
         nextMonthButton = view.findViewById(R.id.nextMonth);
+
         return view;
     }
 
@@ -102,6 +105,7 @@ public class HomeFragment extends Fragment {
 
         calendar.updateCalendar();
         calendar.drawCalendar();
+
         setMonthHeader(selectedMonth);
         calculateStats();
 
@@ -113,6 +117,7 @@ public class HomeFragment extends Fragment {
         ImageView gemIcon = view.findViewById(R.id.gemIcon);
         TextView subsCountTitle = view.findViewById(R.id.subsCountHeader);
         ImageView wishIcon = view.findViewById(R.id.wishIcon);
+
         switch (MainActivity.subType) {
             case 0:
                 gemIcon.setImageResource(R.drawable.primogem);
@@ -206,6 +211,7 @@ public class HomeFragment extends Fragment {
         for (int i = 0; i < calendar.dateArray[toDayOfYear - 1].subDaysRemaining; i++) {
             calendar.dateArray[toDayOfYear + i].subDaysRemaining = calendar.dateArray[toDayOfYear + i - 1].subDaysRemaining - 1;
         }
+
         DataManager.Serialize(MainActivity.context, calendar.dateArray);
     }
 
@@ -213,8 +219,10 @@ public class HomeFragment extends Fragment {
     public void setMonthHeader(int month) {
         TextView header = getView().findViewById(R.id.monthHeader);
         Month monthObj = Month.of(month);
+
         Locale locale = Locale.forLanguageTag("ru");
         String print = monthObj.getDisplayName(TextStyle.FULL_STANDALONE, locale);
+
         header.setText(print.substring(0, 1).toUpperCase() + print.substring(1));
     }
 
@@ -251,6 +259,8 @@ public class HomeFragment extends Fragment {
         else
         {   Toast.makeText(MainActivity.mainActivity, getString(R.string.subs_limit), Toast.LENGTH_SHORT).show(); }
         subsCounterView.setText(String.valueOf(subsCount));
+
+        Notification.subsCount = subsCount;
     }
 
     public void onCheckClick(View view)
@@ -289,5 +299,9 @@ public class HomeFragment extends Fragment {
             calendar.drawCalendar();
             setMonthHeader(selectedMonth);
         }
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
     }
 }

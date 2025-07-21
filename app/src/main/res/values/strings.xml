@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HoyoSubsTrakcer</string>
+    <string name="app_name">GachaManager</string>
     <string name="description">Отслеживайте награды Благословления полной Луны, Пропуска снабжения экспересса и Интертон-подписки.
     Ежедневные напоминания, счетчик наград, наглядный календарь.</string>
     <string name="copyright_info">Все права принадлежат их правооблодателям (All rights belong to their copyright holders). Приложение не
@@ -24,6 +24,9 @@
     <string name="inter_knot_member_count_header">Кол-во интертон-подписок:</string>
     <string name="sub_type_selector_header">Тип отображаемой подписки: </string>
 
+    <string name="notifications_settings_title">Уведомления</string>
+    <string name="notifications_settings_time">Время оповещения:</string>
+
     <string name="nav_home">Домашняя</string>
     <string name="nav_settings">Настройки</string>
     <string name="nav_info">О приложении</string>
@@ -41,4 +44,6 @@
     <string name="check_today">Отметка выполнена!</string>
     <string name="already_cheked">Вы уже отмечались сегодня</string>
     <string name="active_subs_null">У вас нет активных подписок</string>
+
+
 </resources>

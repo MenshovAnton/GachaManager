@@ -2,6 +2,7 @@ package ru.menshovanton.hoyosubstrakcer;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -47,19 +48,23 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void loadFragment(Fragment fragment) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frameLayout, fragment);
-        ft.commit();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
+        fragmentTransaction.replace(R.id.frameLayout, fragment);
+        fragmentTransaction.commit();
     }
 
+    @SuppressLint({"ShortAlarm", "ScheduleExactAlarm"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (view, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
@@ -70,5 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         context = this;
         mainActivity = MainActivity.this;
+
+        startService(new Intent(this, AlarmHelper.class));
     }
 }

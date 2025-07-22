@@ -281,12 +281,14 @@ public class HomeFragment extends Fragment {
             updateSubscribes();
             Toast.makeText(MainActivity.mainActivity, getString(R.string.add_sub), Toast.LENGTH_SHORT).show();
             onCheckClick(view);
+
+            Notification.subsCount = subsCount;
+
+            mainActivity.updateLayout(HomeFragment.newInstance());
         }
         else
         {   Toast.makeText(MainActivity.mainActivity, getString(R.string.subs_limit), Toast.LENGTH_SHORT).show(); }
         subsCounterView.setText(String.valueOf(subsCount));
-
-        Notification.subsCount = subsCount;
     }
 
     public void onCheckClick(View view)

@@ -3,8 +3,11 @@ package ru.menshovanton.hoyosubstrakcer;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.WindowInsets;
+import android.view.WindowInsetsController;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
@@ -70,6 +74,18 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationBarView navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnItemSelectedListener(onItemSelectedListener);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            navigation.setOnApplyWindowInsetsListener((v, insets) -> {
+                v.setPadding(
+                        v.getPaddingLeft(),
+                        v.getPaddingTop(),
+                        v.getPaddingRight(),
+                        v.getPaddingBottom()
+                );
+                return insets;
+            });
+        }
 
         loadFragment(HomeFragment.newInstance());
 

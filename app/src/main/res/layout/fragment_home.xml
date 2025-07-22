@@ -8,317 +8,328 @@
     tools:context=".HomeFragment">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/monthHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/filler"
-            android:textSize="34sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/checkDayButton"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="@color/accent"
-            android:text="@string/check_button_text"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toEndOf="@+id/addSubButton"
-            app:layout_constraintTop_toBottomOf="@+id/monthHeader" />
+            <TextView
+                android:id="@+id/monthHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/filler"
+                android:textSize="34sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <Button
-            android:id="@+id/addSubButton"
-            android:layout_width="150dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="100dp"
-            android:backgroundTint="@color/accent"
-            android:backgroundTintMode="screen"
-            android:text="@string/add_button_text"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/monthHeader" />
+            <Button
+                android:id="@+id/checkDayButton"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="380dp"
+                android:backgroundTint="@color/accent"
+                android:text="@string/check_button_text"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toEndOf="@+id/addSubButton"
+                app:layout_constraintTop_toBottomOf="@+id/monthHeader"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/statisticsHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/stat_header"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkDayButton"
-            app:layout_constraintVertical_bias="0.050000012" />
+            <Button
+                android:id="@+id/addSubButton"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="380dp"
+                android:backgroundTint="@color/accent"
+                android:backgroundTintMode="screen"
+                android:text="@string/add_button_text"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/monthHeader"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/gemIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/claimColumnHeader"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/primogem" />
+            <TextView
+                android:id="@+id/statisticsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/stat_header"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkDayButton"
+                app:layout_constraintVertical_bias="0.050000012" />
 
-        <ImageView
-            android:id="@+id/wishIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/gemIcon"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/intertwined_fate" />
+            <ImageView
+                android:id="@+id/gemIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/claimColumnHeader"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/primogem" />
 
-        <TextView
-            android:id="@+id/claimColumnHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:text="@string/claim_column_header"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.22"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/statisticsHeader"
-            app:layout_constraintVertical_bias="0.050000012" />
+            <ImageView
+                android:id="@+id/wishIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gemIcon"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/intertwined_fate" />
 
-        <TextView
-            android:id="@+id/missColumnHeader"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:text="@string/miss_column_header"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toEndOf="@+id/claimColumnHeader"
-            app:layout_constraintTop_toBottomOf="@+id/statisticsHeader"
-            app:layout_constraintVertical_bias="0.050000012" />
+            <TextView
+                android:id="@+id/claimColumnHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="@string/claim_column_header"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.22"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsHeader"
+                app:layout_constraintVertical_bias="0.050000012" />
 
-        <TextView
-            android:id="@+id/cliamsGemsCounter"
-            android:layout_width="75dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/num_filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.22"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/claimColumnHeader"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/missColumnHeader"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="@string/miss_column_header"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/claimColumnHeader"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsHeader"
+                app:layout_constraintVertical_bias="0.050000012" />
 
-        <TextView
-            android:id="@+id/missGemsCounter"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/num_filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toEndOf="@+id/claimColumnHeader"
-            app:layout_constraintTop_toBottomOf="@+id/missColumnHeader"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/cliamsGemsCounter"
+                android:layout_width="75dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/num_filler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.22"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/claimColumnHeader"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/claimWishesCounter"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/num_filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.22"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cliamsGemsCounter"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/missGemsCounter"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/num_filler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/claimColumnHeader"
+                app:layout_constraintTop_toBottomOf="@+id/missColumnHeader"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/missWishesCounter"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:gravity="center"
-            android:text="@string/num_filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toEndOf="@+id/claimColumnHeader"
-            app:layout_constraintTop_toBottomOf="@+id/missGemsCounter"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/claimWishesCounter"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/num_filler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.22"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cliamsGemsCounter"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/laterColumnHeader"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:text="@string/later_column_header"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toEndOf="@+id/missColumnHeader"
-            app:layout_constraintTop_toBottomOf="@+id/statisticsHeader"
-            app:layout_constraintVertical_bias="0.050000012" />
+            <TextView
+                android:id="@+id/missWishesCounter"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:gravity="center"
+                android:text="@string/num_filler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toEndOf="@+id/claimColumnHeader"
+                app:layout_constraintTop_toBottomOf="@+id/missGemsCounter"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/laterGemsCounter"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="@string/num_filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toEndOf="@+id/missColumnHeader"
-            app:layout_constraintTop_toBottomOf="@+id/laterColumnHeader"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/laterColumnHeader"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="@string/later_column_header"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toEndOf="@+id/missColumnHeader"
+                app:layout_constraintTop_toBottomOf="@+id/statisticsHeader"
+                app:layout_constraintVertical_bias="0.050000012" />
 
-        <TextView
-            android:id="@+id/laterWishesCounter"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            android:gravity="center"
-            android:text="@string/num_filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toEndOf="@+id/missColumnHeader"
-            app:layout_constraintTop_toBottomOf="@+id/laterGemsCounter"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/laterGemsCounter"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/num_filler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toEndOf="@+id/missColumnHeader"
+                app:layout_constraintTop_toBottomOf="@+id/laterColumnHeader"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/previousMonth"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/nextMonth"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/arrow_previous" />
+            <TextView
+                android:id="@+id/laterWishesCounter"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:gravity="center"
+                android:text="@string/num_filler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toEndOf="@+id/missColumnHeader"
+                app:layout_constraintTop_toBottomOf="@+id/laterGemsCounter"
+                app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/nextMonth"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.96"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/arrow_next" />
+            <ImageView
+                android:id="@+id/previousMonth"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/nextMonth"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/arrow_previous" />
 
-        <TextView
-            android:id="@+id/subsCountHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@string/filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/wishIcon"
-            app:layout_constraintVertical_bias="0.100000024" />
+            <ImageView
+                android:id="@+id/nextMonth"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.96"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/arrow_next" />
 
-        <TextView
-            android:id="@+id/subsCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/num_filler"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toEndOf="@+id/subsCountHeader"
-            app:layout_constraintTop_toBottomOf="@+id/wishIcon"
-            app:layout_constraintVertical_bias="0.097" />
+            <TextView
+                android:id="@+id/subsCountHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/filler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/wishIcon"
+                app:layout_constraintVertical_bias="0.100000024" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/blessingOfTheWelkinMoonSelectButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/accent"
-            android:text="@string/blessing_of_the_welkin_moon"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/addSubButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/monthHeader"
-            app:layout_constraintVertical_bias="0.0"
-            app:strokeWidth="5dp" />
+            <TextView
+                android:id="@+id/subsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/num_filler"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toEndOf="@+id/subsCountHeader"
+                app:layout_constraintTop_toBottomOf="@+id/wishIcon"
+                app:layout_constraintVertical_bias="0.097" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/starRailSpecialPassSelectButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/accent"
-            android:text="@string/star_rail_special_pass"
-            app:layout_constraintBottom_toTopOf="@+id/addSubButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/blessingOfTheWelkinMoonSelectButton"
-            app:layout_constraintTop_toBottomOf="@+id/monthHeader"
-            app:layout_constraintVertical_bias="0.0"
-            app:strokeWidth="5dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/blessingOfTheWelkinMoonSelectButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/accent"
+                android:text="@string/blessing_of_the_welkin_moon"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/addSubButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/monthHeader"
+                app:layout_constraintVertical_bias="0.0"
+                app:strokeWidth="5dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/interKnotMembershipSelectButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="5dp"
-            android:backgroundTint="@color/accent"
-            android:backgroundTintMode="screen"
-            android:text="@string/inter_knot_member"
-            app:layout_constraintBottom_toTopOf="@+id/addSubButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/starRailSpecialPassSelectButton"
-            app:layout_constraintTop_toBottomOf="@+id/monthHeader"
-            app:layout_constraintVertical_bias="0.0"
-            app:strokeWidth="5dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/starRailSpecialPassSelectButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:backgroundTint="@color/accent"
+                android:text="@string/star_rail_special_pass"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/addSubButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/blessingOfTheWelkinMoonSelectButton"
+                app:layout_constraintTop_toBottomOf="@+id/monthHeader"
+                app:layout_constraintVertical_bias="0.0"
+                app:strokeWidth="5dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/interKnotMembershipSelectButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:backgroundTint="@color/accent"
+                android:backgroundTintMode="screen"
+                android:text="@string/inter_knot_member"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/addSubButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/starRailSpecialPassSelectButton"
+                app:layout_constraintTop_toBottomOf="@+id/monthHeader"
+                app:layout_constraintVertical_bias="0.0"
+                app:strokeWidth="5dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </FrameLayout>

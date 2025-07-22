@@ -5,15 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        app:itemActiveIndicatorStyle="@style/customIndicator"
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:elevation="3dp"
+        android:layout_margin="0dp"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginVertical="0dp"
+        android:outlineProvider="paddedBounds"
+        android:padding="0dp"
+        app:itemActiveIndicatorStyle="@style/customIndicator"
         app:itemIconTint="?attr/itemIconTint"
         app:itemTextColor="?attr/itemTextColor"
         app:labelVisibilityMode="labeled"
@@ -21,6 +26,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_insetEdge="bottom"
+        app:layout_marginBaseline="0dp"
         app:menu="@menu/bottom_nav_menu" />
 
     <FrameLayout
@@ -29,9 +37,10 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"></FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

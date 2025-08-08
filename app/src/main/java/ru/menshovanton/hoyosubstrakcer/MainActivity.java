@@ -1,25 +1,32 @@
 package ru.menshovanton.hoyosubstrakcer;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.WindowInsets;
-import android.view.WindowInsetsController;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     public static MainActivity mainActivity;
     public static int subType;
+
+    private static final int REQUEST_CODE = 123;
+
+    public static DatabaseHelper dbHelper;
 
     private final NavigationBarView.OnItemSelectedListener onItemSelectedListener
             = new NavigationBarView.OnItemSelectedListener() {
@@ -87,6 +98,16 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            checkAndRequestPermissions();
+        }
+
+        dbHelper = new DatabaseHelper(getApplicationContext());
+
+        if (!isDatabaseExists(this)) {
+            dbHelper.getWritableDatabase();
+        }
+
         loadFragment(HomeFragment.newInstance());
 
         context = this;
@@ -99,5 +120,36 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(fragment);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    private void checkAndRequestPermissions() {
+        String[] permissions = {
+                Manifest.permission.POST_NOTIFICATIONS
+        };
 
+        List<String> permissionsToRequest = new ArrayList<>();
+
+        for (String permission : permissions) {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                permissionsToRequest.add(permission);
+            }
+        }
+
+        if (!permissionsToRequest.isEmpty()) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    permissionsToRequest.toArray(new String[0]),
+                    REQUEST_CODE
+            );
+        }
+    }
+
+    private boolean isDatabaseExists(Context context) {
+        File dbFile = context.getDatabasePath(DatabaseHelper.DATABASE_NAME);
+        return dbFile.exists();
+    }
+
+    public void onDestroy() {
+        super.onDestroy();
+        //dbHelper.close();
+    }
 }

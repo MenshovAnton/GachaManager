@@ -1,11 +1,8 @@
 package ru.menshovanton.hoyosubstrakcer;
 
 import static androidx.core.content.ContextCompat.getColor;
-import static androidx.core.content.ContextCompat.getColorStateList;
 
 import android.annotation.SuppressLint;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -83,7 +80,6 @@ public class HomeFragment extends Fragment {
         toDayOfMonth = LocalDate.now().getDayOfMonth();
         toDayOfYear = LocalDate.now().getDayOfYear();
 
-
         calendar = new Calendar(MainActivity.context, MainActivity.mainActivity);
 
         if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining == 0) { subsCount = 0; }
@@ -95,9 +91,6 @@ public class HomeFragment extends Fragment {
         else if (calendar.dateArray[toDayOfYear - 1].subDaysRemaining <= 180) { subsCount = 6; }
 
         Notification.subsCount = subsCount;
-
-        DataManager.Serialize(MainActivity.context, calendar.dateArray);
-
     }
 
     @Override
@@ -237,8 +230,6 @@ public class HomeFragment extends Fragment {
         for (int i = 0; i < calendar.dateArray[toDayOfYear - 1].subDaysRemaining; i++) {
             calendar.dateArray[toDayOfYear + i].subDaysRemaining = calendar.dateArray[toDayOfYear + i - 1].subDaysRemaining - 1;
         }
-
-        DataManager.Serialize(MainActivity.context, calendar.dateArray);
     }
 
     @SuppressLint("SetTextI18n")
@@ -302,13 +293,14 @@ public class HomeFragment extends Fragment {
             calendar.dateArray[toDayOfYear - 1].status = 1;
             Toast.makeText(MainActivity.mainActivity, getString(R.string.check_today), Toast.LENGTH_SHORT).show();
             claimsDays++;
-            calculateStats();
-            selectedMonth = LocalDate.now().getMonth().getValue();
-            calendar.removeCalendar(constraintLayout);
-            calendar.drawCalendar();
-            setMonthHeader(selectedMonth);
-            DataManager.Serialize(MainActivity.context, calendar.dateArray);
         }
+
+        calculateStats();
+        DataManager.writeDB(MainActivity.context, calendar.dateArray, LocalDate.now().getDayOfYear() - 1, calendar.dateArray[toDayOfYear - 1].subDaysRemaining);
+        selectedMonth = LocalDate.now().getMonth().getValue();
+        calendar.removeCalendar(constraintLayout);
+        calendar.drawCalendar();
+        setMonthHeader(selectedMonth);
     }
 
     public void onPreviousMonthClick(View view) {
@@ -327,10 +319,6 @@ public class HomeFragment extends Fragment {
             calendar.drawCalendar();
             setMonthHeader(selectedMonth);
         }
-    }
-
-    public Calendar getCalendar() {
-        return calendar;
     }
 
     public void onMoonClick(View view) {

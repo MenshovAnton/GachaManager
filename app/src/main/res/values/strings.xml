@@ -31,14 +31,14 @@
     <string name="nav_settings">Настройки</string>
     <string name="nav_info">О приложении</string>
 
-    <string name="blessing_of_the_welkin_moon">Луна</string>
-    <string name="star_rail_special_pass">Пропуск</string>
-    <string name="inter_knot_member">Интернот</string>
+    <string name="genshin">Genshin</string>
+    <string name="hsr">HSR</string>
+    <string name="zzz">ZZZ</string>
 
     <string name="blessing_of_the_welkin_moon_checked">✅ Луна</string>
     <string name="star_rail_special_pass_checked">✅ Пропуск</string>
     <string name="inter_knot_member_checked">✅ Интернот</string>
-    
+
     <string name="add_sub">Подписка добавлена</string>
     <string name="subs_limit">Достигнут лимит подписок</string>
     <string name="check_today">Отметка выполнена!</string>

@@ -1,82 +1,108 @@
 package ru.menshovanton.hoyosubstrakcer;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
-
-import com.google.gson.Gson;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 public class DataManager {
-    private static final String GENSHIN_TRACK_DATA_JSON = "genshinTrackData.json";
-    private static final String HSR_TRACK_DATA_JSON = "hsrTrackData.json";
-    private static final String ZZZ_TRACK_DATA_JSON = "zzzTrackData.json";
-    private static final Gson gson = new Gson();
-
-    static void Serialize(Context context, Date[] dataArray) {
-
-        DataItems dataItems = new DataItems();
-        dataItems.setDates(dataArray);
-        String jsonString = gson.toJson(dataItems);
-
-        switch (MainActivity.subType) {
-            case 0:
-                try (FileOutputStream fileOutputStream = context.openFileOutput(GENSHIN_TRACK_DATA_JSON, Context.MODE_PRIVATE))
-                {   fileOutputStream.write(jsonString.getBytes());  }
-                catch (Exception e)
-                {   e.printStackTrace();    }
-                break;
-            case 1:
-                try (FileOutputStream fileOutputStream = context.openFileOutput(HSR_TRACK_DATA_JSON, Context.MODE_PRIVATE))
-                {   fileOutputStream.write(jsonString.getBytes());  }
-                catch (Exception e)
-                {   e.printStackTrace();    }
-                break;
-            case 2:
-                try (FileOutputStream fileOutputStream = context.openFileOutput(ZZZ_TRACK_DATA_JSON, Context.MODE_PRIVATE))
-                {   fileOutputStream.write(jsonString.getBytes());  }
-                catch (Exception e)
-                {   e.printStackTrace();    }
-                break;
+    static void writeDB(Context context, Date[] dateArray, int start, int stop) {
+        for (int i = start; i < stop + start; i++) {
+            MainActivity.dbHelper.updateValue(i, dateArray[i].dayOfMonth, dateArray[i].month, dateArray[i].status, dateArray[i].subDaysRemaining);
         }
     }
 
-    static Date[] Deserialize(Context context) {
-        switch (MainActivity.subType) {
-            case 0:
-                try (FileInputStream fileInputStream = context.openFileInput(GENSHIN_TRACK_DATA_JSON);
-                     InputStreamReader streamReader = new InputStreamReader(fileInputStream))
-                {
-                    DataItems dataItems = gson.fromJson(streamReader, DataItems.class);
-                    return  dataItems.getDates();
-                }
-                catch (IOException ex)
-                {   ex.printStackTrace();   }
-                break;
-            case 1:
-                try (FileInputStream fileInputStream = context.openFileInput(HSR_TRACK_DATA_JSON);
-                     InputStreamReader streamReader = new InputStreamReader(fileInputStream))
-                {
-                    DataItems dataItems = gson.fromJson(streamReader, DataItems.class);
-                    return  dataItems.getDates();
-                }
-                catch (IOException ex)
-                {   ex.printStackTrace();   }
-                break;
-            case 2:
-                try (FileInputStream fileInputStream = context.openFileInput(ZZZ_TRACK_DATA_JSON);
-                     InputStreamReader streamReader = new InputStreamReader(fileInputStream))
-                {
-                    DataItems dataItems = gson.fromJson(streamReader, DataItems.class);
-                    return  dataItems.getDates();
-                }
-                catch (IOException ex)
-                {   ex.printStackTrace();   }
-                break;
+    public static Date[] readDB(Context context) {
+        Cursor cursor = MainActivity.dbHelper.getValue();
+
+        if (MainActivity.dbHelper.isDatabaseEmpty()) {
+            return null;
         }
-        return null;
+
+        Date[] array = new Date[365];
+
+        for (int i = 0; i <= 363; i++) {
+            array[i] = new Date(
+                    i,
+                    getDayById(i, cursor),
+                    getStatusById(i, cursor),
+                    getSubDaysRemainingById(i, cursor),
+                    getMonthById(i, cursor));
+        }
+
+        cursor.close();
+        return array;
+    }
+
+    @SuppressLint("Range")
+    public static int getDayById(int id, Cursor cursor) {
+        int day = 1;
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToPosition(id);
+            day = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_DAY));
+        }
+
+        return day;
+    }
+
+    @SuppressLint("Range")
+    public static int getMonthById(int id, Cursor cursor) {
+        int month = 1;
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToPosition(id);
+            month = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_MONTH));
+        }
+
+        return month;
+    }
+
+    @SuppressLint("Range")
+    public static int getStatusById(int id, Cursor cursor) {
+        int status = 0;
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToPosition(id);
+
+            switch (MainActivity.subType) {
+                case 0:
+                    status = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUSGENSHIN));
+                    break;
+                case 1:
+                    status = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUSHSR));
+                    break;
+                case 2:
+                    status = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_STATUSZZZ));
+                    break;
+            }
+        }
+
+        return status;
+    }
+
+    @SuppressLint("Range")
+    public static int getSubDaysRemainingById(int id, Cursor cursor) {
+        int days = 0;
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToPosition(id);
+
+            switch (MainActivity.subType) {
+                case 0:
+                    days = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_DRGENSHIN));
+                    break;
+                case 1:
+                    days = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_DRHSR));
+                    break;
+                case 2:
+                    days = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COLUMN_DRZZZ));
+                    break;
+            }
+        }
+
+        return days;
     }
 
     private static class DataItems {

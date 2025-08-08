@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.util.Locale;
+
 public class Calendar {
     public Date[] dateArray;
     public TextView[] dateViewArray;
@@ -17,7 +19,9 @@ public class Calendar {
         this.context = context;
         this.mainActivity = mainActivity;
 
-        if (DataManager.Deserialize(context) == null) {
+        Date[] date = DataManager.readDB(context);
+
+        if (date == null) {
             dateArray = new Date[365];
             int day = 0;
             int month = 1;
@@ -31,8 +35,9 @@ public class Calendar {
                     dateArray[i] = new Date(i, day, 0, 0, month);
                 }
             }
+            DataManager.writeDB(context, dateArray, 0, dateArray.length);
         } else {
-            dateArray = DataManager.Deserialize(context);
+            dateArray = date;
         }
 
         dateViewArray = new TextView[365];
@@ -47,7 +52,11 @@ public class Calendar {
     }
 
     public void updateCalendar() {
-        dateArray = DataManager.Deserialize(context);
+        Date[] date = DataManager.readDB(context);
+        if (date == null) {
+            return;
+        }
+        dateArray = date;
     }
 
     public void drawCalendar() {
@@ -57,7 +66,7 @@ public class Calendar {
 
         int daysOfYearForMonth = getDaysOfYearForMonth(HomeFragment.selectedMonth);
 
-        for (int i = 0; i < 365; i++) {
+        for (int i = 0; i < 364; i++) {
             if (dateArray[i].status == 0 && dateArray[i].subDaysRemaining > 0 && dateArray[i].id < HomeFragment.toDayOfYear - 1) {
                 HomeFragment.missesDays++;
             }
